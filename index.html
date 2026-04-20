@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Brief News | April 20, 2026</title>
+    
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#2c3e50">
+    <link rel="manifest" href="data:application/manifest+json,{ 'name': 'Brief News', 'short_name': 'Brief', 'start_url': '.', 'display': 'standalone', 'background_color': '#f4f7f6', 'theme_color': '#2c3e50' }">
+
+    <style>
+        :root {
+            --bg: #f4f7f6;
+            --card-bg: #ffffff;
+            --primary: #2c3e50;
+            --accent: #e74c3c;
+            --text: #333;
+            --shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: calc(20px + env(safe-area-inset-top)) 20px calc(20px + env(safe-area-inset-bottom)) 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            line-height: 1.5;
+            overscroll-behavior-y: contain;
+            user-select: none;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            width: 100%;
+        }
+
+        header h1 {
+            margin: 0;
+            color: var(--primary);
+            font-size: 2.2rem;
+            letter-spacing: -1px;
+            font-weight: 800;
+        }
+
+        header .date-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .news-card {
+            background: var(--card-bg);
+            padding: 24px;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            margin-bottom: 16px;
+            border-left: 6px solid var(--primary);
+            transition: transform 0.1s ease;
+            cursor: pointer;
+        }
+
+        .news-card:active {
+            transform: scale(0.98);
+            background: #fafafa;
+        }
+
+        .news-card.urgent {
+            border-left-color: var(--accent);
+            background: linear-gradient(to right, #fffcfc, #ffffff);
+        }
+
+        .category {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #95a5a6;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .urgent .category {
+            color: var(--accent);
+        }
+
+        .news-card h2 {
+            margin: 0 0 10px 0;
+            font-size: 1.3rem;
+            line-height: 1.3;
+            color: #1a252f;
+        }
+
+        .news-card p {
+            margin: 0;
+            line-height: 1.6;
+            color: #556677;
+            font-size: 1rem;
+        }
+
+        .footer {
+            margin-top: 40px;
+            font-size: 0.75rem;
+            color: #95a5a6;
+            text-align: center;
+            padding-bottom: 20px;
+        }
+
+        @media (max-width: 600px) {
+            body { padding-left: 15px; padding-right: 15px; }
+            header h1 { font-size: 1.8rem; }
+            .news-card { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Brief News</h1>
+        <div class="date-badge">Monday, April 20, 2026</div>
+    </header>
+
+    <div class="container">
+
+        <div class="news-card urgent">
+            <span class="category">🚨 Global Alert</span>
+            <h2>Japan Warns of "Huge" Earthquake After 7.7 Tremor</h2>
+            <p>A major tremor struck off the Sanriku coast. Tsunami warnings remain active for Iwate and Hokkaido. Emergency services are on high alert for an 8.0+ aftershock.</p>
+        </div>
+
+        <div class="news-card">
+            <span class="category">⚖️ Geopolitics</span>
+            <h2>U.S.-Iran Ceasefire in Jeopardy</h2>
+            <p>The seizure of a cargo ship in the Strait of Hormuz has halted diplomatic talks. Oil markets are reacting with a sharp 6% price increase this morning.</p>
+        </div>
+
+        <div class="news-card">
+            <span class="category">🤖 Technology</span>
+            <h2>The Rise of "Harness Engineering"</h2>
+            <p>April 2026 marks a shift in AI development. New "Harness" protocols are ensuring AI agents operate within strict safety boundaries for corporate use.</p>
+        </div>
+
+        <div class="news-card">
+            <span class="category">🌏 Business</span>
+            <h2>India-Korea Friendship Festival</h2>
+            <p>A week-long economic and cultural summit begins today. Focus remains on tech manufacturing partnerships and the booming "K-Wave" in Mumbai.</p>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        &copy; 2026 Brief News Media. <br>
+        Designed for instant clarity.
+    </div>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js').catch(err => {
+                    console.log('Offline support disabled (local preview)');
+                });
+            });
+        }
+
+        document.querySelectorAll('.news-card').forEach(card => {
+            card.addEventListener('click', () => {
+                console.log("Card tapped: " + card.querySelector('h2').innerText);
+            });
+        });
+    </script>
+</body>
+</html>
